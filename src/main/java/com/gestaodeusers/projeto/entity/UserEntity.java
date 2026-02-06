@@ -37,20 +37,6 @@ public class UserEntity {
     public UserEntity(){
     }
 
-    //Methods
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof UserEntity that)) return false;
-        return Objects.equals(id, that.id);
-    }
-
 
     //Getters and Setters
     public Long getId() {
@@ -83,5 +69,27 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    //Methods
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof UserEntity that)) return false;
+        return Objects.equals(id, that.id);
     }
 }
