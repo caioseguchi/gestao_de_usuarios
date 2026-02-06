@@ -1,56 +1,30 @@
-package com.gestaodeusers.projeto.entity;
+package com.gestaodeusers.projeto.dto;
 
 import com.fasterxml.jackson.databind.util.BeanUtil;
-import com.gestaodeusers.projeto.dto.UserDTO;
-import jakarta.persistence.*;
+import com.gestaodeusers.projeto.entity.UserEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import org.springframework.beans.BeanUtils;
 
-import java.util.Objects;
-
-@Entity
-@Table(name="gu_user")
-public class UserEntity {
-    //Attributes
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private  Long id;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false, unique = true)
     private  String login;
-
-    @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
     private String email;
 
     //Constructor
-    //DTO -> Entity
-    public UserEntity(UserDTO user){
+    //Entity -> DTO
+    public  UserDTO(UserEntity user){
         BeanUtils.copyProperties(user, this);
     }
 
     //Empty
-    public UserEntity(){
-    }
+    public  UserDTO(){
 
-    //Methods
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof UserEntity that)) return false;
-        return Objects.equals(id, that.id);
-    }
-
 
     //Getters and Setters
     public Long getId() {
@@ -83,5 +57,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
